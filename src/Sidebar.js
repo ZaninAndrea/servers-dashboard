@@ -7,7 +7,12 @@ import Fab from "@mui/material/Fab"
 import AddIcon from "@mui/icons-material/Add"
 import Typography from "@mui/material/Typography"
 
-export default function Sidebar({ configs, selectedIdx, selectConfig }) {
+export default function Sidebar({
+    configs,
+    selectedIdx,
+    selectConfig,
+    openNewConfigPage,
+}) {
     return (
         <div className="sidebar">
             <Typography
@@ -44,7 +49,12 @@ export default function Sidebar({ configs, selectedIdx, selectConfig }) {
                 ))}
             </List>
 
-            <Fab color="primary" aria-label="add" className="new-server-button">
+            <Fab
+                color="primary"
+                aria-label="add"
+                className="new-server-button"
+                onClick={openNewConfigPage}
+            >
                 <AddIcon />
             </Fab>
         </div>

@@ -50,7 +50,7 @@ export default class LoginGate extends Component {
                             fullWidth
                             color="primary"
                             focused
-                            inputProps={{ style: { color: "#253138" } }}
+                            inputProps={{ style: { color: "white" } }}
                             value={this.state.password}
                             onChange={(e) =>
                                 this.setState({ password: e.target.value })
