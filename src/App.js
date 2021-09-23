@@ -17,7 +17,7 @@ const lightTheme = createTheme({
     },
 })
 
-const BASE_DOMAIN = "http://localhost:8080"
+const BASE_DOMAIN = "https://servers.baida.dev:8080"
 class App extends Component {
     constructor(props) {
         super(props)

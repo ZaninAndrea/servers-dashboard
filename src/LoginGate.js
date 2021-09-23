@@ -6,7 +6,7 @@ import Button from "@mui/material/Button"
 import Typography from "@mui/material/Typography"
 import LoadingButton from "@mui/lab/LoadingButton"
 
-const BASE_DOMAIN = "http://localhost:8080"
+const BASE_DOMAIN = "https://servers.baida.dev:8080"
 export default class LoginGate extends Component {
     state = { password: "", error: "", loading: false }
 
