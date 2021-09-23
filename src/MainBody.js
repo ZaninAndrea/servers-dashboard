@@ -112,7 +112,12 @@ export default class MainBody extends Component {
                         }
                     />
                 )}
-                {this.state.mode === "users" && <UsersEditor />}
+                {this.state.mode === "users" && (
+                    <UsersEditor
+                        configId={this.props.configs[this.props.selectedIdx].ID}
+                        password={this.props.password}
+                    />
+                )}
 
                 <Box sx={{ width: "100%" }}>
                     <BottomNavigation

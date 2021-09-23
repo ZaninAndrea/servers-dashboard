@@ -113,6 +113,7 @@ class App extends Component {
                         <MainBody
                             configs={this.state.configs}
                             selectedIdx={this.state.selectedIdx}
+                            password={this.state.password}
                             updateConfig={(updatedConfig) => {
                                 return new Promise(async (resolve, reject) => {
                                     await fetch(

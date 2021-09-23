@@ -64,6 +64,10 @@ code {
     height: calc(100vh - 64px - 56px);
     overflow: auto;
 }
+.main-content.user-editor {
+    padding-left: 0;
+    padding-right: 0;
+}
 .main-header {
     height: 64px;
     border-bottom: 1px solid #ccc;
@@ -101,4 +105,19 @@ code {
     border-bottom: 1px solid #aaa;
     box-sizing: border-box;
     height: 64px;
+}
+.centered-spinner {
+    margin-left: calc(50% - 25px - 30px);
+    margin-top: 64px;
+    margin-bottom: 0;
+    color: var(--honey-color) !important;
+}
+
+.user-editor .commands {
+    margin-top: -16px;
+    margin-left: 16px;
+    margin-right: 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-template-areas: "new-user . delete-user";
 }
