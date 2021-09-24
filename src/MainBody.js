@@ -1,7 +1,5 @@
 import React, { Component } from "react"
 import Typography from "@mui/material/Typography"
-import cloneDeep from "lodash.clonedeep"
-import deepEqual from "lodash.isequal"
 import Fab from "@mui/material/Fab"
 import IconButton from "@mui/material/IconButton"
 import SaveIcon from "@mui/icons-material/Save"
@@ -17,25 +15,7 @@ import Box from "@mui/material/Box"
 
 export default class MainBody extends Component {
     state = {
-        saving: false,
-        deleting: false,
         mode: "users",
-    }
-
-    static getDerivedStateFromProps(props, state) {
-        if (
-            props.selectedIdx !== null &&
-            (state === null || props.configs[props.selectedIdx] != state.config)
-        ) {
-            return {
-                config: props.configs[props.selectedIdx],
-                editedConfig: cloneDeep(props.configs[props.selectedIdx]),
-                saving: false,
-                deleting: false,
-            }
-        }
-
-        return null
     }
 
     render() {
@@ -43,73 +23,14 @@ export default class MainBody extends Component {
             return <div className="main"></div>
         }
 
-        const edited = !deepEqual(this.state.config, this.state.editedConfig)
-
         return (
             <div className="main">
-                <div className="main-header">
-                    <Typography variant="h4" component="div" className="title">
-                        {this.props.configs[this.props.selectedIdx].App.Name}
-                    </Typography>
-                    <div className="buttons">
-                        <IconButton
-                            disabled={
-                                !edited ||
-                                this.state.saving ||
-                                this.state.deleting
-                            }
-                            key="save-edits-button"
-                            className="button"
-                            onClick={() => {
-                                if (!this.state.saving) {
-                                    this.setState({ saving: true })
-
-                                    this.props
-                                        .updateConfig(this.state.editedConfig)
-                                        .then(() => {
-                                            this.setState({ saving: false })
-                                        })
-                                }
-                            }}
-                        >
-                            {!this.state.saving ? (
-                                <SaveIcon />
-                            ) : (
-                                <CircularProgress color="#FFB500" size={24} />
-                            )}
-                        </IconButton>
-                        <IconButton
-                            key="delete-button"
-                            className="button"
-                            onClick={() => {
-                                if (!this.state.deleting) {
-                                    this.setState({ deleting: true })
-                                    this.props.deleteConfig().then(() => {
-                                        this.setState({ deleting: false })
-                                    })
-                                }
-                            }}
-                            disabled={this.state.saving || this.state.deleting}
-                        >
-                            {!this.state.deleting ? (
-                                <DeleteIcon />
-                            ) : (
-                                <CircularProgress color="#FFB500" size={24} />
-                            )}
-                        </IconButton>
-                    </div>
-                </div>
                 {this.state.mode === "configuration" && (
                     <ConfigurationEditor
-                        configuration={this.state.editedConfig}
-                        updateConfiguration={(update) =>
-                            this.setState(({ editedConfig }) => ({
-                                editedConfig: {
-                                    ...editedConfig,
-                                    ...update,
-                                },
-                            }))
-                        }
+                        selectedIdx={this.props.selectedIdx}
+                        configs={this.props.configs}
+                        updateConfig={this.props.updateConfig}
+                        deleteConfig={this.props.deleteConfig}
                     />
                 )}
                 {this.state.mode === "users" && (
