@@ -20,7 +20,7 @@ export default class MainBody extends Component {
 
     render() {
         if (this.props.selectedIdx === null) {
-            return <div className="main"></div>
+            return <div className="main empty-main"></div>
         }
 
         return (

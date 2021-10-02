@@ -6,6 +6,7 @@ import ListItemText from "@mui/material/ListItemText"
 import Fab from "@mui/material/Fab"
 import AddIcon from "@mui/icons-material/Add"
 import Typography from "@mui/material/Typography"
+import Skeleton from "@mui/material/Skeleton"
 
 export default function Sidebar({
     configs,
@@ -22,31 +23,62 @@ export default function Sidebar({
                 color="secondary.contrastText"
                 className="sidebar-title"
             >
-                Admin Dashboard
+                Shipyard Dashboard
             </Typography>
             <List className="sidebar-height">
-                {configs.map((config, idx) => (
-                    <ListItem disablePadding>
-                        <ListItemButton onClick={() => selectConfig(idx)}>
-                            <ListItemText
-                                primary={config.App.Name}
-                                primaryTypographyProps={{
-                                    color:
-                                        selectedIdx === idx
-                                            ? "#FFCD4B"
-                                            : "rgba(255,255,255,0.85)",
-                                }}
-                                secondary={config.Domain}
-                                secondaryTypographyProps={{
-                                    color:
-                                        selectedIdx === idx
-                                            ? "rgba(255,205,75, 0.7)"
-                                            : "rgba(255,255,255,0.6)",
-                                }}
-                            />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                {configs !== null
+                    ? configs.map((config, idx) => (
+                          <ListItem disablePadding>
+                              <ListItemButton onClick={() => selectConfig(idx)}>
+                                  <ListItemText
+                                      primary={config.App.Name}
+                                      primaryTypographyProps={{
+                                          color:
+                                              selectedIdx === idx
+                                                  ? "#FFCD4B"
+                                                  : "rgba(255,255,255,0.85)",
+                                      }}
+                                      secondary={config.Domain}
+                                      secondaryTypographyProps={{
+                                          color:
+                                              selectedIdx === idx
+                                                  ? "rgba(255,205,75, 0.7)"
+                                                  : "rgba(255,255,255,0.6)",
+                                      }}
+                                  />
+                              </ListItemButton>
+                          </ListItem>
+                      ))
+                    : new Array(5).fill(0).map((_, idx) => (
+                          <ListItem disablePadding>
+                              <ListItemButton onClick={() => selectConfig(idx)}>
+                                  <ListItemText
+                                      primary={
+                                          <Skeleton
+                                              variant="text"
+                                              sx={{
+                                                  bgcolor: "grey.900",
+                                              }}
+                                          />
+                                      }
+                                      primaryTypographyProps={{
+                                          color: "rgba(255,255,255,0.85)",
+                                      }}
+                                      secondary={
+                                          <Skeleton
+                                              variant="text"
+                                              sx={{
+                                                  bgcolor: "grey.900",
+                                              }}
+                                          />
+                                      }
+                                      secondaryTypographyProps={{
+                                          color: "rgba(255,255,255,0.6)",
+                                      }}
+                                  />
+                              </ListItemButton>
+                          </ListItem>
+                      ))}
             </List>
 
             <Fab

@@ -12,6 +12,7 @@ import IconButton from "@mui/material/IconButton"
 import Checkbox from "@mui/material/Checkbox"
 import CloseIcon from "@mui/icons-material/Close"
 import Paper from "@mui/material/Paper"
+import Skeleton from "@mui/material/Skeleton"
 
 const BASE_DOMAIN = "https://servers.baida.dev:8080"
 
@@ -55,8 +56,51 @@ export default class UsersEditor extends Component {
     render() {
         if (this.state.users === null) {
             return (
-                <div className="main-content">
-                    <CircularProgress size={50} className="centered-spinner" />
+                <div className="main-content user-editor">
+                    <div className="commands">
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            style={{ gridArea: "new-user" }}
+                            disabled
+                        >
+                            Add User
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="primary"
+                            disabled
+                            style={{ gridArea: "delete-user" }}
+                        >
+                            Delete selected
+                        </Button>
+                    </div>
+                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell padding="checkbox">
+                                    <Checkbox color="primary" disabled />
+                                </TableCell>
+                                <TableCell align="left">ID</TableCell>
+                                <TableCell align="left">Email</TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {new Array(15).fill(0).map(() => (
+                                <TableRow>
+                                    <TableCell padding="checkbox">
+                                        <Checkbox color="primary" disabled />
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <Skeleton variant="text" />
+                                    </TableCell>
+                                    <TableCell align="left">
+                                        <Skeleton variant="text" />
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
                 </div>
             )
         }
@@ -64,8 +108,6 @@ export default class UsersEditor extends Component {
         let checkedRowsCount = Object.values(this.state.selected).filter(
             (value) => !!value
         ).length
-
-        console.log(this.state.openedUserIndex)
 
         if (this.state.openedUserIndex === null)
             return (

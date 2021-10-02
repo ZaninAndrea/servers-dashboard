@@ -133,6 +133,7 @@ code {
     position: absolute !important;
     bottom: calc(16px + 58px);
     right: 24px;
+    z-index: 1000;
 }
 .config-save-edits-button.Mui-disabled {
     /* background-color: rgba(200, 200, 200, 1) !important; */
@@ -142,6 +143,7 @@ code {
     position: absolute !important;
     bottom: calc(64px + 16px + 16px + 58px);
     right: 24px;
+    z-index: 1000;
 }
 
 .userRow {
@@ -167,4 +169,16 @@ code {
     padding: 16px;
     height: calc(100vh - 58px - 64px);
     overflow: auto;
+}
+.login-logo {
+    width: 50%;
+    margin: 0 calc(25%) 32px calc(25%);
+}
+.empty-main {
+    margin: 15%;
+    background-image: url("http://localhost:3000/border-logo.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.1;
 }

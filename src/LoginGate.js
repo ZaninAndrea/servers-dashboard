@@ -30,7 +30,7 @@ export default class LoginGate extends Component {
                 <Paper
                     elevation={5}
                     className="login-form"
-                    sx={{ bgcolor: "secondary.main" }}
+                    sx={{ bgcolor: "#285668" }}
                 >
                     <Box component="form" noValidate autoComplete="off">
                         <Typography
@@ -40,8 +40,9 @@ export default class LoginGate extends Component {
                             style={{ textAlign: "center" }}
                             color="primary"
                         >
-                            Admin Login
+                            Shipyard
                         </Typography>
+                        <img src="/logo.png" className="login-logo" />
                         <TextField
                             id="password-field"
                             label="Password"

@@ -63,7 +63,30 @@ class App extends Component {
                     <LoginGate logIn={this.logIn} />
                 </ThemeProvider>
             )
-        } else if (!this.state.configs) return <></>
+        } else if (!this.state.configs)
+            return (
+                <ThemeProvider theme={lightTheme}>
+                    <div className="app">
+                        <Sidebar
+                            configs={null}
+                            selectedIdx={this.state.selectedIdx}
+                            selectConfig={(idx) =>
+                                this.setState({
+                                    selectedIdx: idx,
+                                    creatingNewConfig: false,
+                                })
+                            }
+                            openNewConfigPage={() =>
+                                this.setState({ creatingNewConfig: true })
+                            }
+                        />
+                        <MainBody
+                            configs={this.state.configs}
+                            selectedIdx={this.state.selectedIdx}
+                        />
+                    </div>
+                </ThemeProvider>
+            )
 
         return (
             <ThemeProvider theme={lightTheme}>
